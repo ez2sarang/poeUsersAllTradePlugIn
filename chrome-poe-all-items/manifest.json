@@ -1,13 +1,27 @@
 {
   "manifest_version": 3,
   "name": "PoE 거래소 모든아이템",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "카카오 Path of Exile 1 거래소에서 판매자의 전체 매물을 새 탭으로 엽니다.",
   "minimum_chrome_version": "100",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "PoE 거래소 모든아이템",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
   "content_scripts": [
     {
       "matches": ["https://poe.kakaogames.com/trade", "https://poe.kakaogames.com/trade/*"],
       "js": ["trade-results.js"],
+      "css": ["trade-results.css"],
       "run_at": "document_idle"
     }
   ]

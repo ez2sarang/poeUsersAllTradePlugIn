@@ -21,6 +21,7 @@ jobs:
           version=$(node -p "require('./chrome-poe-all-items/manifest.json').version")
           test "$GITHUB_REF_NAME" = "v$version"
           node --check chrome-poe-all-items/trade-results.js
+          cp LICENSE chrome-poe-all-items/LICENSE.txt
           zip -q -r chrome-poe-all-items.zip chrome-poe-all-items
           sha256sum chrome-poe-all-items.zip > chrome-poe-all-items.zip.sha256
 
