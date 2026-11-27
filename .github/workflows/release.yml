@@ -1,0 +1,39 @@
+name: 확장 프로그램 배포
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: 버전 확인과 ZIP 패키징
+        run: |
+          version=$(node -p "require('./chrome-poe-all-items/manifest.json').version")
+          test "$GITHUB_REF_NAME" = "v$version"
+          node --check chrome-poe-all-items/trade-results.js
+          zip -q -r chrome-poe-all-items.zip chrome-poe-all-items
+          sha256sum chrome-poe-all-items.zip > chrome-poe-all-items.zip.sha256
+
+      - name: 릴리스 게시
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > release-notes.md <<'EOF'
+          카카오 PoE 1 거래소 검색 결과에서 **모든아이템**을 누르면 현재 리그의 판매자 공개 매물이 공식 거래소 새 탭에 열립니다.
+
+          `chrome-poe-all-items.zip`을 내려받아 압축을 풀고, 확장 프로그램 관리 화면에서 `manifest.json`이 있는 폴더를 로드하세요. [이미지 포함 설치 안내](https://github.com/ez2sarang/poeUsersAllTradePlugIn#설치-방법)
+
+          문의 [sales@com.dooray.com](mailto:sales@com.dooray.com)
+          EOF
+          gh release create "$GITHUB_REF_NAME" chrome-poe-all-items.zip chrome-poe-all-items.zip.sha256 \
+            --verify-tag --title "PoE 거래소 모든아이템 $GITHUB_REF_NAME" --notes-file release-notes.md
