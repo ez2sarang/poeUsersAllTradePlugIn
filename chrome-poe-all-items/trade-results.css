@@ -1,24 +1,24 @@
-.btn.poe-all-items-button {
+#trade .btn.poe-all-items-button {
   margin-inline-start: 4px;
-  border-color: #715936;
+  border-color: #806641;
   border-radius: 3px;
   background: #30281e;
   color: #e5d2aa;
   white-space: nowrap;
 }
 
-.btn.poe-all-items-button:hover,
-.btn.poe-all-items-button:focus {
+#trade .btn.poe-all-items-button:hover,
+#trade .btn.poe-all-items-button:focus {
   border-color: #998052;
   background: #413426;
   color: #f4e3bd;
 }
 
-.btn.poe-all-items-button:focus-visible {
+#trade .btn.poe-all-items-button:focus-visible {
   outline: 2px solid #bda06a;
   outline-offset: 2px;
 }
 
-.btn.poe-all-items-button[hidden] {
+#trade .btn.poe-all-items-button[hidden] {
   display: none;
 }

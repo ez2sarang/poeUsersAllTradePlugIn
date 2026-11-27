@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "PoE 거래소 모든아이템",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "카카오 Path of Exile 1 거래소에서 판매자의 전체 매물을 새 탭으로 엽니다.",
   "minimum_chrome_version": "100",
   "icons": {
